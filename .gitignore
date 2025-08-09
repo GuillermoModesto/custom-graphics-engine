@@ -1,0 +1,34 @@
+# --- Visual Studio ---
+.vs                      # VS workspace data (local to your machine)
+
+# --- CMake build output ---
+/out/                    # CMake build dir that VS created
+/build/                  # If you create your own build folder(s)
+
+# --- Compiled binaries ---
+*.exe
+*.dll
+*.lib
+*.pdb
+*.ilk
+*.obj
+*.log
+
+# --- CMake cache files ---
+CMakeCache.txt
+CMakeFiles/
+
+# --- Generated files ---
+*.idb
+*.tlog
+
+# --- Other temp files ---
+*.user
+*.suo
+*.vcxproj*
+*.filters
+
+# --- OS-specific ---
+.DS_Store                # macOS
+Thumbs.db                # Windows
+
