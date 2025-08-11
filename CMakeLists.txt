@@ -47,7 +47,10 @@ if(MSVC)
   # Preprocessor definitions:
   #   WIN32_LEAN_AND_MEAN = Exclude rarely used parts of <windows.h>
   #   NOMINMAX            = Prevent <windows.h> from defining min/max macros
-  target_compile_definitions(BlueBrains PRIVATE WIN32_LEAN_AND_MEAN NOMINMAX)
+  #   UNICODE/_UNICODE    = Make Win32 APIs resolve to wide-char (W) variants
+  target_compile_definitions(BlueBrains
+    PRIVATE WIN32_LEAN_AND_MEAN NOMINMAX UNICODE _UNICODE
+  )
 
   # Link this target against Windows system libraries required for Direct3D 12.
   target_link_libraries(BlueBrains PRIVATE
@@ -56,4 +59,3 @@ if(MSVC)
     dxguid  # GUID/IID definitions for DirectX COM interfaces
   )
 endif()
-
