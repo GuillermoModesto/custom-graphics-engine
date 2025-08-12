@@ -1,24 +1,20 @@
-#include <iostream>
 #include <windows.h>
+#include <iostream>
 #include "platform/win32_window.hpp"
-
-#define WIN32_LEAN_AND_MEAN
+#include "renderer/d3d12_renderer.hpp"
 
 int main() {
-    std::cout << "BlueBrains: creating window...\n";
-
     Win32Window window;
-    if (!window.create({ L"BlueBrains", 1280, 720 })) {
-        std::cerr << "Failed to create window\n";
-        return -1;
-    }
+    if (!window.create({ L"BlueBrains", 1280, 720 })) return -1;
 
-    std::cout << "Window created. Close it to exit.\n";
+    D3D12Renderer renderer;
+    if (!renderer.init({ window.hwnd(), window.width(), window.height() })) return -2;
+
     while (window.pump()) {
-        // (no rendering yet)
-        // sleep a tiny bit so this loop doesn't peg a CPU core
+        renderer.begin_frame();
+        renderer.draw();
+        renderer.end_frame();
         Sleep(1);
     }
-    std::cout << "Bye!\n";
     return 0;
 }
